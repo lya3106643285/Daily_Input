@@ -1,0 +1,17 @@
+{
+  "viewports": {
+    "narrow": [
+      390,
+      844
+    ],
+    "ipad-portrait": [
+      820,
+      1180
+    ],
+    "ipad-landscape": [
+      1180,
+      820
+    ]
+  },
+  "engine": "chromium"
+}

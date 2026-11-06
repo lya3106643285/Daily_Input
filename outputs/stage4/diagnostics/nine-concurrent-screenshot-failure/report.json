@@ -1,0 +1,50 @@
+{
+  "status": "failed",
+  "issue": "/home/lya3106643285/projects/daily-input/outputs/stage4/nine/issues/.revisions/2026-11-06/3ebe3a081713758164621562a2704078725b3b3a02ed721313ab0e5c5799559b",
+  "html": "/home/lya3106643285/projects/daily-input/outputs/stage4/nine/html/Daily_Input_2026-11-06.html",
+  "checks": [
+    {
+      "id": "content",
+      "status": "passed",
+      "details": "成品语义文本和链接目标与本期原稿完全对应"
+    },
+    {
+      "id": "structure",
+      "status": "passed",
+      "details": "9 栏 / 10 篇 / 28 个唯一锚点"
+    },
+    {
+      "id": "media",
+      "status": "passed",
+      "details": "1 张内嵌图片可解码；材料组件数量对应原稿"
+    },
+    {
+      "id": "links",
+      "status": "passed",
+      "details": "17 个链接格式有效；未联网验证活性"
+    },
+    {
+      "id": "html",
+      "status": "passed",
+      "details": "HTML文档完整，元素正确闭合"
+    },
+    {
+      "id": "package",
+      "status": "passed",
+      "details": "378712 字节；CSS 与图片独立内嵌"
+    },
+    {
+      "id": "browser",
+      "status": "failed",
+      "details": "Page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n"
+    },
+    {
+      "id": "visual",
+      "status": "not_run",
+      "details": "浏览器失败，未创建或修改视觉基线"
+    }
+  ],
+  "browser": {
+    "viewports": {}
+  }
+}

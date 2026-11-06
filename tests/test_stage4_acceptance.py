@@ -101,5 +101,30 @@ class Stage4(unittest.TestCase):
         self.assertEqual(self.checks(size)['package']['status'], 'failed')
 
 
+    def test_23_article_id_is_bound_to_its_original_article(self):
+        swapped = self.original.replace('id="art-001"', 'id="temporary-swap"', 1).replace(
+            'id="art-002"', 'id="art-001"', 1).replace('id="temporary-swap"', 'id="art-002"', 1)
+        self.assertNotEqual(self.original, swapped)
+        self.html.write_text(swapped, encoding='utf-8')
+        report = self.run_qa(expected='failed')
+        checks = self.checks(report)
+        self.assertTrue(any(checks[key]['status'] == 'failed' for key in ('content', 'structure')), report)
+
+    def test_24_source_href_is_bound_to_original_source(self):
+        # Preserve visible source text while changing only its valid HTTPS destination.
+        self.fixture.revision()
+        self.fixture.text = self.fixture.text.replace('测试记录2026-11-06第0节',
+            '[测试记录2026-11-06第0节](https://example.org/original)', 1)
+        self.fixture.ingest()
+        original = self.html.read_text('utf-8')
+        changed = original.replace('href="https://example.org/original"',
+                                   'href="https://example.org/different"', 1)
+        self.assertNotEqual(original, changed)
+        self.html.write_text(changed, encoding='utf-8')
+        report = self.run_qa(expected='failed')
+        checks = self.checks(report)
+        self.assertTrue(any(checks[key]['status'] == 'failed' for key in ('content', 'links')), report)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,318 @@
+{
+  "asset_records": {
+    "assets/io-total.png": {
+      "sha256": "d92b7de8d250b4f1ee23526ea92e5e9e2a0291dd69fb28cb488b11b11cc8e33c",
+      "sources": [
+        "本项目自制图，见《媒体标记示例》；构造数据，2026-11-06。"
+      ]
+    },
+    "assets/the-oxbow.jpg": {
+      "sha256": "40c454b6cf712c6ef70cca067fbe551c069d4b9130d06716db05452d16d515c4",
+      "sources": [
+        "Thomas Cole，《牛轭湖》，1836，大都会艺术博物馆，馆藏号08.228。Open Access / CC0。[作品页](https://www.metmuseum.org/art/collection/search/10497) · [馆方许可依据](https://www.metmuseum.org/hubs/open-access)；图片来源核验记录：2026-11-06。"
+      ]
+    }
+  },
+  "assets": [
+    "assets/io-total.png",
+    "assets/the-oxbow.jpg"
+  ],
+  "counters": {
+    "article": 10,
+    "material": 7,
+    "section": 9,
+    "sub": 8
+  },
+  "date": "2026-11-07",
+  "excerpt_history": {
+    "mat-004": {
+      "table-record@V3.2-stage4.1": 1
+    },
+    "mat-005": {
+      "code-record@V3.2-stage4.1": 1
+    },
+    "mat-006": {
+      "quote-record@V3.2-stage4.1": 1
+    }
+  },
+  "excerpts": {
+    "mat-004": {
+      "table-record": {
+        "id": "src-mat-004",
+        "text": "构造样例包括九个栏目，其中首栏两篇，合计十篇。",
+        "title": "本项目·计数记录·2026-11-06"
+      }
+    },
+    "mat-005": {
+      "code-record": {
+        "id": "src-mat-005",
+        "text": "代码仅计算9+1，展示时不会执行。",
+        "title": "本项目·复算说明·2026-11-06"
+      }
+    },
+    "mat-006": {
+      "quote-record": {
+        "id": "src-mat-006",
+        "text": "作者交稿原件按字节保留，工作副本仅补充不可见ID标记。",
+        "title": "本项目·输入保留·2026-11-06"
+      }
+    }
+  },
+  "history": [],
+  "input_sha256": "b8a038cb1e809d4a4739ea434003f7741300ef611395c48b4b82347d0e24cd8d",
+  "lang": "zh-CN",
+  "legacy_ids": [],
+  "links": {},
+  "note": "阶段四自动质检构造稿：长短文章、多图、长表格代码、中英文与公式。",
+  "objects": {
+    "art-001": {
+      "kind": "article",
+      "line": 7,
+      "name": "一次作者交稿怎样出版",
+      "parent": "sec-001"
+    },
+    "art-002": {
+      "kind": "article",
+      "line": 15,
+      "name": "同栏的第二篇",
+      "parent": "sec-001"
+    },
+    "art-003": {
+      "kind": "article",
+      "line": 144,
+      "name": "把图像长边限制在1600像素",
+      "parent": "sec-002"
+    },
+    "art-004": {
+      "kind": "article",
+      "line": 156,
+      "name": "新闻层也容纳讲解",
+      "parent": "sec-003"
+    },
+    "art-005": {
+      "kind": "article",
+      "line": 168,
+      "name": "从构造表格读出条件",
+      "parent": "sec-004"
+    },
+    "art-006": {
+      "kind": "article",
+      "line": 191,
+      "name": "小脚本的可复算路径",
+      "parent": "sec-005"
+    },
+    "art-007": {
+      "kind": "article",
+      "line": 213,
+      "name": "从新想法到可复现记录",
+      "parent": "sec-006"
+    },
+    "art-008": {
+      "kind": "article",
+      "line": 229,
+      "name": "游戏机制的讲解占位样文",
+      "parent": "sec-007"
+    },
+    "art-009": {
+      "kind": "article",
+      "line": 241,
+      "name": "游戏推荐的写作示例",
+      "parent": "sec-008"
+    },
+    "art-010": {
+      "kind": "article",
+      "line": 253,
+      "name": "《牛轭湖》里的两种天气",
+      "parent": "sec-009"
+    },
+    "mat-001": {
+      "kind": "material",
+      "line": 107,
+      "name": "c2df6d90ea20fccae957b3741d2e1f19094246b99a04053377bb3e73262a2864",
+      "parent": "art-002"
+    },
+    "mat-002": {
+      "kind": "material",
+      "line": 113,
+      "name": "3afc825298590cab4946166c1972f71f6b8682cf8c74b1d90a4a1829039106ed",
+      "parent": "art-002"
+    },
+    "mat-003": {
+      "kind": "material",
+      "line": 132,
+      "name": "187ec46a65c99a09e541f835f6313c789f78e72ea62c4ee669d964f32c1519c1",
+      "parent": "art-002"
+    },
+    "mat-004": {
+      "kind": "material",
+      "line": 178,
+      "name": "f457583eefb05efa015cac9697b3d89e4cd5d85ef75ffb14bbe64e9468267f17",
+      "parent": "art-005"
+    },
+    "mat-005": {
+      "kind": "material",
+      "line": 199,
+      "name": "0d5eb6df0c3c4bc21dba18e20c59c98fd9216537d534e66f8ec7fba516dc1e90",
+      "parent": "art-006"
+    },
+    "mat-006": {
+      "kind": "material",
+      "line": 221,
+      "name": "af1a40b28b7ac332fbce04672f788f6985ce73c3d51c16efaf6814bc933f1278",
+      "parent": "art-007"
+    },
+    "mat-007": {
+      "kind": "material",
+      "line": 261,
+      "name": "e5afa868107758eceb30c4bee4676ff51660cec6f114ed2290503b38e02327b3",
+      "parent": "art-010"
+    },
+    "sec-001": {
+      "canonical": "AI 前沿",
+      "digest": "一次作者交稿怎样出版",
+      "edition": "A",
+      "kind": "section",
+      "line": 3,
+      "name": "AI 前沿",
+      "topic": "出版流程演示 · 1"
+    },
+    "sec-002": {
+      "canonical": "硬件、图形技术与价格",
+      "digest": "把图像长边限制在1600像素",
+      "edition": "A",
+      "kind": "section",
+      "line": 140,
+      "name": "硬件、图形技术与价格",
+      "topic": "出版流程演示 · 2"
+    },
+    "sec-003": {
+      "canonical": "科技与游戏事件",
+      "digest": "新闻层也容纳讲解",
+      "edition": "A",
+      "kind": "section",
+      "line": 152,
+      "name": "科技与游戏事件",
+      "topic": "出版流程演示 · 3"
+    },
+    "sec-004": {
+      "canonical": "论文精读",
+      "digest": "从构造表格读出条件",
+      "edition": "B",
+      "kind": "section",
+      "line": 164,
+      "name": "论文精读",
+      "topic": "出版流程演示 · 4"
+    },
+    "sec-005": {
+      "canonical": "GitHub 经典项目",
+      "digest": "小脚本的可复算路径",
+      "edition": "B",
+      "kind": "section",
+      "line": 187,
+      "name": "GitHub 经典项目",
+      "topic": "出版流程演示 · 5"
+    },
+    "sec-006": {
+      "canonical": "GitHub 特殊新项目",
+      "digest": "从新想法到可复现记录",
+      "edition": "B",
+      "kind": "section",
+      "line": 209,
+      "name": "GitHub 特殊新项目",
+      "topic": "出版流程演示 · 6"
+    },
+    "sec-007": {
+      "canonical": "Gaming 技术解读",
+      "digest": "游戏机制的讲解占位样文",
+      "edition": "B",
+      "kind": "section",
+      "line": 225,
+      "name": "Gaming 技术解读",
+      "topic": "出版流程演示 · 7"
+    },
+    "sec-008": {
+      "canonical": "游戏推荐",
+      "digest": "游戏推荐的写作示例",
+      "edition": "B",
+      "kind": "section",
+      "line": 237,
+      "name": "游戏推荐",
+      "topic": "出版流程演示 · 8"
+    },
+    "sec-009": {
+      "canonical": "每日好图",
+      "digest": "《牛轭湖》里的两种天气",
+      "edition": "B",
+      "kind": "section",
+      "line": 249,
+      "name": "每日好图",
+      "topic": "出版流程演示 · 9"
+    },
+    "src-mat-004": {
+      "kind": "excerpt",
+      "name": "table-record",
+      "parent": "mat-004"
+    },
+    "src-mat-005": {
+      "kind": "excerpt",
+      "name": "code-record",
+      "parent": "mat-005"
+    },
+    "src-mat-006": {
+      "kind": "excerpt",
+      "name": "quote-record",
+      "parent": "mat-006"
+    },
+    "sub-001": {
+      "kind": "sub",
+      "line": 23,
+      "name": "长篇连续阅读与中英文",
+      "parent": "art-002"
+    },
+    "sub-002": {
+      "kind": "sub",
+      "line": 27,
+      "name": "第1组观察",
+      "parent": "art-002"
+    },
+    "sub-003": {
+      "kind": "sub",
+      "line": 43,
+      "name": "第2组观察",
+      "parent": "art-002"
+    },
+    "sub-004": {
+      "kind": "sub",
+      "line": 59,
+      "name": "第3组观察",
+      "parent": "art-002"
+    },
+    "sub-005": {
+      "kind": "sub",
+      "line": 75,
+      "name": "第4组观察",
+      "parent": "art-002"
+    },
+    "sub-006": {
+      "kind": "sub",
+      "line": 91,
+      "name": "第5组观察",
+      "parent": "art-002"
+    },
+    "sub-007": {
+      "kind": "sub",
+      "line": 176,
+      "name": "表格中的口径",
+      "parent": "art-005"
+    },
+    "sub-008": {
+      "kind": "sub",
+      "line": 267,
+      "name": "回到前景",
+      "parent": "art-010"
+    }
+  },
+  "retired": {},
+  "schema_version": 1,
+  "version": "V3.2-stage4.1"
+}

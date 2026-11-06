@@ -26,6 +26,7 @@ class Document(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.stack, self.tags, self.ids, self.links, self.images, self.resources = [], [], [], [], [], []
         self.body_text, self.styles, self.errors = [], [], []
+        self.id_elements = []
         self.feed(text)
         self.close()
         if self.stack:
@@ -36,6 +37,7 @@ class Document(HTMLParser):
         self.tags.append(tag)
         if 'id' in attrs:
             self.ids.append(attrs['id'])
+            self.id_elements.append((tag, attrs['id']))
         if tag == 'a':
             self.links.append(attrs.get('href',''))
         if tag == 'img':
@@ -72,8 +74,15 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def check_content(doc, expected):
+    require(doc.text == expected.text, '成品正文、来源或目录文本与本期工作副本不一致')
+    require(doc.links == expected.links, '成品链接目标或对应次序与本期工作副本不一致')
+    return '成品语义文本和链接目标与本期原稿完全对应'
+
+
 def check_structure(doc, manifest, expected):
     require(len(doc.ids) == len(set(doc.ids)) and all(doc.ids), '锚点重复或为空')
+    require(doc.id_elements == expected.id_elements, '锚点与栏目、文章或材料对象的绑定关系不符')
     missing = set(manifest['objects']) - set(doc.ids)
     require(not missing, f'缺少登记对象锚点：{sorted(missing)}')
     require(doc.tags.count('h1') == 1, '刊名 h1 应恰有一个')
@@ -217,7 +226,7 @@ def run_qa(issue, html_path, output, baseline, *, update_baseline=False, max_byt
         with tempfile.TemporaryDirectory(prefix='daily-qa-reference-') as temp:
             expected_file = publish(issue,Path(temp),1600,1024*1024*1024)
             expected = Document(expected_file.read_text('utf-8'))
-        check('content', lambda: (require(doc.text == expected.text, '成品正文、来源或目录文本与本期工作副本不一致') or '成品语义文本与本期原稿完全对应'))
+        check('content', lambda:check_content(doc,expected))
         check('structure',lambda:check_structure(doc,manifest,expected))
         check('media',lambda:check_media(doc,expected))
         check('links',lambda:check_links(doc))

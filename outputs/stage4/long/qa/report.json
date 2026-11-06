@@ -1,0 +1,1359 @@
+{
+  "status": "passed",
+  "issue": "/home/lya3106643285/projects/daily-input/outputs/stage4/long/issues/.revisions/2026-11-07/b8a038cb1e809d4a4739ea434003f7741300ef611395c48b4b82347d0e24cd8d",
+  "html": "/home/lya3106643285/projects/daily-input/outputs/stage4/long/html/Daily_Input_2026-11-07.html",
+  "checks": [
+    {
+      "id": "content",
+      "status": "passed",
+      "details": "成品语义文本和链接目标与本期原稿完全对应"
+    },
+    {
+      "id": "structure",
+      "status": "passed",
+      "details": "9 栏 / 10 篇 / 37 个唯一锚点"
+    },
+    {
+      "id": "media",
+      "status": "passed",
+      "details": "2 张内嵌图片可解码；材料组件数量对应原稿"
+    },
+    {
+      "id": "links",
+      "status": "passed",
+      "details": "17 个链接格式有效；未联网验证活性"
+    },
+    {
+      "id": "html",
+      "status": "passed",
+      "details": "HTML文档完整，元素正确闭合"
+    },
+    {
+      "id": "package",
+      "status": "passed",
+      "details": "428729 字节；CSS 与图片独立内嵌"
+    },
+    {
+      "id": "browser",
+      "status": "passed",
+      "details": {
+        "narrow": {
+          "width": 390,
+          "scrollWidth": 390,
+          "images": [
+            {
+              "ok": true
+            },
+            {
+              "ok": true
+            }
+          ],
+          "brokenAnchors": [],
+          "paragraphs": [
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            }
+          ],
+          "title": "每日信息输入 · 2026-11-07",
+          "height": 22791,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": "narrow.png",
+          "external_requests": []
+        },
+        "ipad-portrait": {
+          "width": 820,
+          "scrollWidth": 820,
+          "images": [
+            {
+              "ok": true
+            },
+            {
+              "ok": true
+            }
+          ],
+          "brokenAnchors": [],
+          "paragraphs": [
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            }
+          ],
+          "title": "每日信息输入 · 2026-11-07",
+          "height": 15257,
+          "viewport": {
+            "width": 820,
+            "height": 1180
+          },
+          "screenshot": "ipad-portrait.png",
+          "external_requests": []
+        },
+        "ipad-landscape": {
+          "width": 1180,
+          "scrollWidth": 1180,
+          "images": [
+            {
+              "ok": true
+            },
+            {
+              "ok": true
+            }
+          ],
+          "brokenAnchors": [],
+          "paragraphs": [
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            },
+            {
+              "font": "20px",
+              "line": "31px"
+            }
+          ],
+          "title": "每日信息输入 · 2026-11-07",
+          "height": 15394,
+          "viewport": {
+            "width": 1180,
+            "height": 820
+          },
+          "screenshot": "ipad-landscape.png",
+          "external_requests": []
+        }
+      }
+    },
+    {
+      "id": "visual",
+      "status": "passed",
+      "details": {
+        "mode": "compared",
+        "baseline_dir": "/home/lya3106643285/projects/daily-input/outputs/stage4/long/baseline",
+        "viewports": {
+          "narrow": {
+            "changed_ratio": 0.0,
+            "maximum": 0.001
+          },
+          "ipad-portrait": {
+            "changed_ratio": 0.0,
+            "maximum": 0.001
+          },
+          "ipad-landscape": {
+            "changed_ratio": 0.0,
+            "maximum": 0.001
+          }
+        }
+      }
+    }
+  ],
+  "browser": {
+    "viewports": {
+      "narrow": {
+        "width": 390,
+        "scrollWidth": 390,
+        "images": [
+          {
+            "ok": true
+          },
+          {
+            "ok": true
+          }
+        ],
+        "brokenAnchors": [],
+        "paragraphs": [
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          }
+        ],
+        "title": "每日信息输入 · 2026-11-07",
+        "height": 22791,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "screenshot": "narrow.png",
+        "external_requests": []
+      },
+      "ipad-portrait": {
+        "width": 820,
+        "scrollWidth": 820,
+        "images": [
+          {
+            "ok": true
+          },
+          {
+            "ok": true
+          }
+        ],
+        "brokenAnchors": [],
+        "paragraphs": [
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          }
+        ],
+        "title": "每日信息输入 · 2026-11-07",
+        "height": 15257,
+        "viewport": {
+          "width": 820,
+          "height": 1180
+        },
+        "screenshot": "ipad-portrait.png",
+        "external_requests": []
+      },
+      "ipad-landscape": {
+        "width": 1180,
+        "scrollWidth": 1180,
+        "images": [
+          {
+            "ok": true
+          },
+          {
+            "ok": true
+          }
+        ],
+        "brokenAnchors": [],
+        "paragraphs": [
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          },
+          {
+            "font": "20px",
+            "line": "31px"
+          }
+        ],
+        "title": "每日信息输入 · 2026-11-07",
+        "height": 15394,
+        "viewport": {
+          "width": 1180,
+          "height": 820
+        },
+        "screenshot": "ipad-landscape.png",
+        "external_requests": []
+      }
+    }
+  }
+}
