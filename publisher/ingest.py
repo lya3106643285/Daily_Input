@@ -242,7 +242,10 @@ def ingest(author, metadata_path, store, *, fault=None):
             history.append({'version':previous['version'], 'input_sha256':previous['input_sha256']})
         if any(record['version'] == metadata['version'] for record in history):
             raise ValueError(f'期次 {day}：version 已在历史中使用；请使用新 version')
-        objects, retired, counters, legacy = assign(items, metadata, previous)
+        try:
+            objects, retired, counters, legacy = assign(items, metadata, previous)
+        except ValueError as exc:
+            raise ValueError(f'期次 {day}：{exc}') from exc
         manifest = {'schema_version':1, 'date':day, 'version':metadata['version'],
                     'lang':metadata.get('lang','zh-CN'), 'note':metadata.get('note',''),
                     'objects':objects, 'retired':retired, 'counters':counters,
@@ -264,7 +267,10 @@ def ingest(author, metadata_path, store, *, fault=None):
                     current = None
                 continue
             if current:
-                for key in re.findall(r'\]\(excerpt:([A-Za-z0-9_-]+)\)', raw(node)):
+                source_links = [t.attrGet('href') for t in MD.parseInline(raw(node))[0].children if t.type == 'link_open']
+                resolved = [metadata.get('links', {}).get(url, url) for url in source_links]
+                keys = [url[len('excerpt:'):] for url in resolved if url.startswith('excerpt:')]
+                for key in keys:
                     try:
                         entry = metadata['excerpts'][key]
                         if not all(isinstance(entry[f],str) and entry[f].strip() for f in ('title','text')):
@@ -273,17 +279,30 @@ def ingest(author, metadata_path, store, *, fault=None):
                         raise ValueError(f'第 {node.map[0]+1} 行：缺少本地摘录 {key}') from exc
                     material = current['id']
                     history = manifest['excerpt_history'].setdefault(material, {})
-                    # Reappearing deleted excerpt keys receive fresh suffixes.
+                    active = manifest['excerpts'].setdefault(material, {})
+                    if key in active:
+                        continue
+                    # Explicit legacy excerpt IDs import actual old HTML targets only once.
                     previous_active = previous.get('excerpts', {}).get(material, {})
+                    requested = entry.get('id')
                     if key in previous_active:
                         sid = previous_active[key]['id']
+                        if requested and requested != sid:
+                            raise ValueError(f'期次 {day}：摘录 {key} 不可更换既有 ID')
+                    elif requested:
+                        if previous or requested not in metadata.get('legacy_ids', []):
+                            raise ValueError(f'期次 {day}：旧摘录 ID 须在首次入库的 legacy_ids 中授权：{requested}')
+                        if not isinstance(requested, str) or not ID.fullmatch(requested):
+                            raise ValueError(f'期次 {day}：无效旧摘录 ID：{requested}')
+                        sid = requested
+                        legacy.add(sid)
+                        history[f'{key}@{metadata["version"]}'] = max(history.values(), default=0) + 1
                     else:
                         index = max(history.values(), default=0) + 1
                         history[f'{key}@{metadata["version"]}'] = index
                         sid = f'src-{material}' + (f'-{index:03}' if index > 1 else '')
-                    active = manifest['excerpts'].setdefault(material, {})
-                    if key in active:
-                        continue
+                    if sid in objects or sid in retired:
+                        raise ValueError(f'期次 {day}：摘录 ID 重复或已停用：{sid}')
                     active[key] = dict(entry, id=sid)
                     objects[sid] = {'kind':'excerpt','parent':material,'name':key}
                     used_excerpts.add(sid)
@@ -294,6 +313,7 @@ def ingest(author, metadata_path, store, *, fault=None):
         for key, obj in previous.get('objects', {}).items():
             if obj['kind'] == 'excerpt' and key not in used_excerpts:
                 retired[key] = obj
+        manifest['legacy_ids'] = sorted(legacy)
         work = build_work(text, items)
         validate(manifest)
         from .__main__ import template_environment, Anchors

@@ -324,6 +324,32 @@ class Stage3(unittest.TestCase):
         self.assertNotEqual((self.store / DAY).resolve(), old)
         self.assertIn('改题保留身份', self.html())
 
+    def test_19_imported_legacy_excerpt_id_and_return_are_preserved(self):
+        self.image()
+        self.add_body('<!-- id: material-1 -->\n\n' + self.material(credit='测试作者，CC0，[本地原文](excerpt:record)。'))
+        self.info['excerpts'] = {'record': {'title': '旧记录第1节', 'text': '应离线保留的旧摘录。', 'id': 'excerpt-1'}}
+        self.info['legacy_ids'] = ['material-1', 'excerpt-1']
+        self.ingest()
+        page = Page(self.html())
+        self.assertIn('material-1', page.ids)
+        self.assertIn('excerpt-1', page.ids)
+        self.assertIn('excerpt-1', page.refs)
+        self.assertIn('material-1', page.refs)
+        self.assertEqual(self.manifest()['objects']['excerpt-1']['parent'], 'material-1')
+
+    def test_20_old_material_link_maps_to_embedded_excerpt(self):
+        self.image()
+        self.add_body(self.material(credit='测试作者，CC0，[本地原文](old-record.md#part)。'))
+        self.info['links'] = {'old-record.md#part': 'excerpt:old'}
+        self.info['excerpts'] = {'old': {'title': '旧记录第1节', 'text': '映射链接对应的离线摘录。'}}
+        self.ingest()
+        page = Page(self.html())
+        self.assertIn('映射链接对应的离线摘录。', self.html())
+        self.assertIn('src-mat-001', page.ids)
+        self.assertIn('src-mat-001', page.refs)
+        self.assertIn('mat-001', page.refs)
+        self.assertNotIn('href="old-record.md#part"', self.html())
+
     def test_18_original_prebuilt_issue_still_publishes(self):
         p = self.command('publisher', ROOT / 'docs/3 出版引擎/示例期', '--output-dir', self.output)
         self.assertEqual(p.returncode, 0, p.stderr)

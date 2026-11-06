@@ -19,6 +19,7 @@ def inline(text, links=None):
         if t.type == 'link_open':
             url = t.attrGet('href')
             url = (links or {}).get(url, url)
+            url = (links or {}).get(url, url)  # old document -> excerpt:key -> local target
             t.attrSet('href', url)
             u = urlsplit(url)
             if not (url.startswith('#') or (u.scheme in {'http', 'https'} and u.netloc)
@@ -33,6 +34,7 @@ def raw(n):
 
 class Blocks:
     def __init__(self, text):
+        self.source = text.splitlines()
         self.nodes = SyntaxTreeNode(MD.parse(text)).children
         self.pos = 0
 
@@ -88,6 +90,17 @@ def render_material(blocks, node, identifier, media, picture, manifest, rich):
             raise ValueError('引文需要使用自然段')
         body = media.quote([rich(raw(n)) for n in node.children])
     else:
+        from markdown_it.rules_block.table import escapedSplit
+        widths = []
+        for line in blocks.source[node.map[0]:node.map[1]]:
+            cells = escapedSplit(line.strip())
+            if cells and cells[0] == '':
+                cells.pop(0)
+            if cells and cells[-1] == '':
+                cells.pop()
+            widths.append(len(cells))
+        if len(set(widths)) != 1:
+            raise ValueError('表格每行列数须与表头一致')
         rows = [n.children for n in node.walk() if n.type == 'tr']
         align = [c.attrs.get('style', 'text-align:left').split(':')[-1] for c in rows[0]]
         cells = [[rich(raw(c)) for c in row] for row in rows]
