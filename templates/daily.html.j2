@@ -1,0 +1,44 @@
+{% extends 'issue.html.j2' %}
+{% import 'components/content.html.j2' as c %}
+{% block issue_styles %}<style>{% include 'css/issue.css' %}</style>{% endblock %}
+{% block masthead %}
+<header class="masthead">
+  <div class="series">Research Letter</div>
+  <h1>{{ title }}</h1>
+  <div><time datetime="{{ date }}">{{ date }}</time> · {{ version }} · 月辉紫白</div>
+  {% if note %}<p class="issue-note">{{ note }}</p>{% endif %}
+</header>
+<nav class="contents" aria-label="本期目录">
+  <strong>本期目录</strong>
+  {% for group in groups %}
+  <div class="contents-group"><strong>{{ group.label }}</strong>
+    {% for section in group.sections %}
+    <a href="#{{ section.id }}"><span>{{ section.number }}</span><span><b>{{ section.name }}</b><small>{{ section.digest }}</small></span></a>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</nav>
+{% endblock %}
+{% block sections %}
+{% for group in groups %}
+{# 旧版清单把 A/B 版别放在显示名的第一个词。 #}
+{% set edition = group.edition if group.edition is defined else group.label.split()[0] %}
+{% set source_slot = {'A': 'title_sources', 'B': 'end_sources'}[edition] %}
+<div class="issue-group">
+  <div class="group-label">{{ group.label }}</div>
+  {% for section in group.sections %}
+  <section>
+    <h2 id="{{ section.id }}">{{ section.number }} · {{ section.name }}<span class="section-count">{{ section.articles|length }} 篇</span></h2>
+    <div class="section-theme">{{ section.topic }}</div>
+    {% if section.intro %}<div class="intro">{{ section.intro }}</div>{% endif %}
+    {% for article in section.articles %}
+    {% call c.article_frame(article.id, article.title, article.lang, article.summary, **{source_slot: article.sources}) %}
+    {{ article.body }}
+    {% endcall %}
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+{% endfor %}
+<footer>{{ title }} · {{ date }}　/　End of issue</footer>
+{% endblock %}

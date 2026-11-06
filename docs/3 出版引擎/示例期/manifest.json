@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-06",
+  "version": "V3.2",
+  "note": "出版引擎联调样刊",
+  "objects": {
+    "sec-001": {"kind": "section", "edition": "A", "topic": "从馆藏到日报", "digest": "一期离线配图的交接"},
+    "art-001": {"kind": "article", "parent": "sec-001"},
+    "sec-002": {"kind": "section", "edition": "B", "topic": "雷雨之后的河谷", "digest": "Thomas Cole《牛轭湖》"},
+    "art-002": {"kind": "article", "parent": "sec-002"},
+    "mat-001": {"kind": "material", "parent": "art-002"}
+  },
+  "assets": ["assets/the-oxbow.jpg"]
+}

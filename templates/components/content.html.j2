@@ -1,0 +1,38 @@
+{% macro section(id, title, count, intro='') -%}
+<section>
+  <h2 id="{{ id }}">{{ title }}<span class="section-count">栏目 · {{ count }} 篇</span></h2>
+  {% if intro %}<div class="intro">{{ intro }}</div>{% endif %}
+  {{ caller() }}
+</section>
+{%- endmacro %}
+
+{% macro article_frame(id, title, lang='zh-CN', summary='', title_sources=(), end_sources=()) -%}
+<article lang="{{ lang }}">
+  <h3 id="{{ id }}">{{ title }}</h3>
+  {{ source_lines(title_sources) }}
+  {% if summary %}<div class="summary">{{ summary }}</div>{% endif %}
+  {{ caller() }}
+  {{ source_lines(end_sources, true) }}
+</article>
+{%- endmacro %}
+
+{# 当前 Markdown 原稿规范的两种来源位置，供已有调用方使用。 #}
+{% macro article(id, title, genre, sources, lang='zh-CN', summary='') -%}
+{% set placement = {'新闻摘要': 'title_sources', '讲解综述': 'end_sources'}[genre] %}
+{% set body = caller %}
+{% call article_frame(id, title, lang, summary, **{placement: sources}) %}{{ body() }}{% endcall %}
+{%- endmacro %}
+
+{% macro source_lines(sources, at_end=false) -%}
+{% if sources %}<div class="source{% if at_end %} end-source{% endif %}">
+  {% for line in sources %}<div>{{ line }}</div>{% endfor %}
+</div>{% endif %}
+{%- endmacro %}
+
+{% macro heading(title, id=none) -%}
+<h4{% if id %} id="{{ id }}"{% endif %}>{{ title }}</h4>
+{%- endmacro %}
+
+{% macro paragraph(text, first=false) -%}
+<p{% if first %} class="opening"{% endif %}>{{ text }}</p>
+{%- endmacro %}

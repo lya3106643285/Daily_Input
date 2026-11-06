@@ -1,0 +1,17 @@
+.masthead { border-top: 5px solid var(--lm-decoration); padding: 2rem 0 1rem }
+.series, .group-label { font-weight: 600; letter-spacing: .08em }
+.series { text-transform: uppercase; font-size: .85rem }
+.masthead h1 { font-size: clamp(2.5rem, 7vw, 3.75rem); margin: .3rem 0 }
+.issue-note { font-size: 1rem; margin: 1rem 0 0 }
+.contents { border-block: 1px solid var(--lm-decoration); padding: 1.2rem 0 1.6rem }
+.contents > strong { font-size: 1.5rem }
+.contents-group { margin-top: 1.2rem }
+.contents-group a { display: grid; grid-template-columns: 2em 1fr; color: inherit; text-decoration: none; padding: .5rem 0; line-height: 1.5 }
+.contents-group a:hover b, .contents-group a:focus b { text-decoration: underline }
+.contents-group small { display: block; font-size: .875rem }
+.group-label { margin: 3rem 0 1rem }
+.section-theme { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 600; margin-top: 1rem }
+.evidence { margin: 1.5rem 0; padding: 1rem; background: var(--lm-media-surface); border-left: 4px solid var(--lm-decoration) }
+.evidence p, .process-step { font-size: 1rem; line-height: 1.55; margin: .5rem 0 }
+.process-step strong { margin-right: 1em }
+footer { margin-top: 3rem; border-top: 1px solid var(--lm-decoration); padding-top: 1rem }

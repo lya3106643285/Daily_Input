@@ -1,0 +1,34 @@
+{% macro figure(id, credits, excerpts=(), caption='') -%}
+<figure{% if id %} id="{{ id }}"{% endif %}>
+  {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+  {{ caller() }}
+  {% for credit in credits %}<div class="credit">{{ credit }}</div>{% endfor %}
+  {% for item in excerpts %}
+  <aside class="excerpt" id="{{ item.id }}"><strong>{{ item.title }}</strong><br>
+    {{ item.text }} <a href="#{{ id }}">返回材料</a>
+  </aside>
+  {% endfor %}
+</figure>
+{%- endmacro %}
+
+{% macro image(uri, alt) -%}
+<div class="material"><img src="{{ uri }}" alt="{{ alt }}"></div>
+{%- endmacro %}
+
+{% macro table(headers, rows, align) -%}
+<div class="accent-panel"><div class="wide"><table>
+  <thead><tr>{% for value in headers %}<th scope="col" class="{{ align[loop.index0] }}">{{ value }}</th>{% endfor %}</tr></thead>
+  <tbody>{% for row in rows %}<tr>{% for value in row %}<td class="{{ align[loop.index0] }}">{{ value }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+</table></div></div>
+{%- endmacro %}
+
+{% macro code(language, text, note='') -%}
+<div class="code-block">
+  <div class="code-head"><span class="language-label">{{ language }}</span>{% if note %}<span class="code-note">{{ note }}</span>{% endif %}</div>
+  <pre><code>{{ text }}</code></pre>
+</div>
+{%- endmacro %}
+
+{% macro quote(paragraphs) -%}
+<blockquote class="accent-panel">{% for text in paragraphs %}<p>{{ text }}</p>{% endfor %}</blockquote>
+{%- endmacro %}

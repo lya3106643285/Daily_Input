@@ -1,0 +1,53 @@
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif }
+main { width: calc(100% - 4rem); max-width: 46rem; margin: 0 auto; padding: clamp(36px, 7vw, 68px) 0 5rem }
+@media (max-width: 24.99rem) { main { width: calc(100% - 2rem) } }
+
+h1, h2, h3, h4 { margin: 0; overflow-wrap: break-word }
+h1 { font-size: 1.125rem; line-height: 1.4; font-weight: 600; padding-bottom: 1.25rem }
+section + section { margin-top: 4rem }
+.section-count { margin-inline-start: .75rem; font-size: .875rem; font-weight: 400 }
+h2 { border-top: 4px solid; padding: .65rem .8rem; font-size: 1.25rem; line-height: 1.4 }
+article { padding-top: 1.75rem }
+article + article { border-top: 1px solid; margin-top: 2.5rem }
+h3 { font-size: clamp(29px, 4.6vw, 41px); line-height: 1.28; letter-spacing: -.025em; margin-bottom: .82em }
+h4 { font-size: 21px; line-height: 1.45; font-weight: 600; margin: 1.5rem 0 .5rem }
+p { font-size: 20px; font-weight: 400; line-height: 1.55; margin: 0 0 14px; overflow-wrap: break-word; text-align: start }
+article:lang(zh) > .opening { text-indent: 2em }
+
+figure { width: 84%; margin: 1.5rem auto 2rem; min-width: 0 }
+@media (max-width: 30rem) { figure { width: 90% } }
+.material, .accent-panel, .code-block { border-inline-start: 6px solid }
+.material { padding: 4px; min-width: 0 }
+.accent-panel { padding: .8rem 1rem }
+figure img { display: block; max-width: 100%; height: auto }
+figcaption { font-size: 16px; line-height: 1.5; font-weight: 600; text-align: left; margin: 0 0 .85rem }
+.credit { font-size: 13px; line-height: 1.5; text-align: right; margin-top: .85rem; overflow-wrap: anywhere }
+.credit a { text-decoration: underline; text-underline-offset: .15em }
+.excerpt { display: none; font-size: 14px; line-height: 1.5; margin-top: .65rem }
+.excerpt:target { display: block }
+.wide, pre { max-width: 100%; overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-size: 1rem }
+th, td { padding: .45rem .55rem; text-align: start }
+td { font-variant-numeric: tabular-nums }
+pre, blockquote { margin: 0 }
+.code-block { overflow: hidden }
+.code-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1rem; padding: .5rem 1rem }
+.language-label { font: 600 14px/1.4 system-ui, sans-serif }
+.code-note { font-size: 16px; line-height: 1.5 }
+pre { padding: 1rem; font-size: 1rem; line-height: 1.5; tab-size: 4 }
+pre code { font-family: ui-monospace, Menlo, Consolas, monospace }
+
+@media (max-width: 30rem) { .accent-panel { padding: .65rem .5rem } th, td { padding: .4rem .25rem } }
+blockquote p { margin: 0 }
+header { margin-bottom: 1.25rem }
+header h1 { padding-bottom: .25rem }
+time, .source { font-size: .9375rem; line-height: 1.5 }
+.source { margin: -.75rem 0 1rem; overflow-wrap: anywhere }
+.end-source { margin: 1.5rem 0 0; padding-top: .75rem; border-top: 1px solid }
+.source a { text-underline-offset: .15em }
+.intro, .summary { font-size: 1rem; line-height: 1.55; margin: 1rem 0; overflow-wrap: anywhere }
+.right { text-align: right }
+.center { text-align: center }
+blockquote p + p { margin-top: 14px }

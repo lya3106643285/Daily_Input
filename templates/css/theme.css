@@ -1,0 +1,42 @@
+/* Daily Input · Lilac Moon HTML · v1.0 */
+:root {
+  --lm-page: #F7F8FF;
+  --lm-inset: #F9F6FF;
+  --lm-decoration: #C7A6FF;
+  --lm-ink: #000000;
+  --lm-emphasis: #FF002B;
+  --lm-auxiliary: #3794FF;
+
+  --lm-media-surface: #F5F1FD;
+  --lm-credit-link: #334990;
+}
+
+html {
+  color: var(--lm-ink);
+  background-color: var(--lm-page);
+}
+
+h2 {
+  background-color: var(--lm-inset);
+  border-top-color: var(--lm-decoration);
+}
+
+article + article,
+.end-source {
+  border-top-color: var(--lm-decoration);
+}
+
+.material,
+.accent-panel,
+.code-block {
+  background-color: var(--lm-media-surface);
+  border-inline-start-color: var(--lm-decoration);
+}
+
+.source a {
+  color: inherit;
+}
+
+.credit a {
+  color: var(--lm-credit-link);
+}
