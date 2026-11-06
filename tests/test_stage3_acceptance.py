@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 from html.parser import HTMLParser
 from io import BytesIO
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -18,6 +19,8 @@ import unittest
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / 'src'
+sys.path.insert(0, str(SRC))
 DAY = '2026-11-06'
 STEM = f'Daily_Input_{DAY}'
 SECTIONS = ['AI 前沿', '硬件、图形技术与价格', '科技与游戏事件', '论文精读',
@@ -74,8 +77,9 @@ class Stage3(unittest.TestCase):
         self.metadata.write_text(json.dumps(self.info, ensure_ascii=False), encoding='utf-8')
 
     def command(self, *args):
+        env = dict(os.environ, PYTHONPATH=str(SRC))
         return subprocess.run([sys.executable, '-m', *map(str, args)], cwd=ROOT, text=True,
-                              capture_output=True, timeout=45)
+                              capture_output=True, timeout=45, env=env)
 
     def ingest(self, ok=True, *extra):
         self.write()

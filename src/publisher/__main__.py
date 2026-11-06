@@ -33,7 +33,7 @@ class Anchors(HTMLParser):
 
 
 def template_environment():
-    return Environment(loader=FileSystemLoader(Path(__file__).resolve().parents[1] / 'templates'),
+    return Environment(loader=FileSystemLoader(Path(__file__).resolve().parents[2] / 'templates'),
                        autoescape=True, undefined=StrictUndefined)
 
 
