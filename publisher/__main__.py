@@ -12,6 +12,7 @@ from PIL import Image
 
 from .assets import image_uri, local_asset
 from .content import parse
+from .manifest import read_json, validate, verify_ready
 
 
 class Anchors(HTMLParser):
@@ -31,20 +32,17 @@ class Anchors(HTMLParser):
             self.refs.add(attrs['href'][1:])
 
 
-def unique_keys(pairs):
-    obj = {}
-    for key, value in pairs:
-        if key in obj:
-            raise ValueError(f'清单字段重复：{key}')
-        obj[key] = value
-    return obj
+def template_environment():
+    return Environment(loader=FileSystemLoader(Path(__file__).resolve().parents[1] / 'templates'),
+                       autoescape=True, undefined=StrictUndefined)
 
 
 def publish(root, output, max_edge, max_bytes):
     root = root.resolve()
-    if not (root / 'READY').is_file():
-        raise ValueError('本期缺少 READY 交接标记')
-    manifest = json.loads((root / 'manifest.json').read_text('utf-8'), object_pairs_hook=unique_keys)
+    if min(max_edge, max_bytes) <= 0:
+        raise ValueError('长边和字节上限须大于零')
+    verify_ready(root)
+    manifest = validate(read_json(root / 'manifest.json'))
     day = date.fromisoformat(manifest['date']).isoformat()
     stem = f'Daily_Input_{day}'
     assets = manifest['assets']
@@ -60,8 +58,7 @@ def publish(root, output, max_edge, max_bytes):
             used[ref] = image_uri(paths[ref], max_edge)
         return used[ref]
 
-    env = Environment(loader=FileSystemLoader(Path(__file__).resolve().parents[1] / 'templates'),
-                      autoescape=True, undefined=StrictUndefined)
+    env = template_environment()
     text = (root / f'{stem}.md').read_text('utf-8-sig')
     title, groups = parse(text, manifest, env, picture)
     if used.keys() != paths.keys():
