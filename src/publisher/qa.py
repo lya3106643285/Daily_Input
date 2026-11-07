@@ -1,9 +1,13 @@
 """Validate one issue and its final HTML, including real offline browser screenshots."""
 import argparse
 import base64
+import hashlib
 from html.parser import HTMLParser
 from io import BytesIO
 import json
+import platform
+import subprocess
+from importlib.metadata import version
 from pathlib import Path
 import re
 import shutil
@@ -14,6 +18,7 @@ from PIL import Image, ImageChops
 
 from .__main__ import publish
 from .manifest import read_json, validate, verify_ready
+from .fonts import verify_fonts
 
 VIEWPORTS = {'narrow': (390, 844), 'ipad-portrait': (820, 1180), 'ipad-landscape': (1180, 820)}
 VOID = {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
@@ -131,14 +136,58 @@ def check_package(doc, data, maximum):
     return f'{len(data)} 字节；CSS 与图片独立内嵌'
 
 
+def capture_screenshot(page, destination):
+    """Retry only Chromium's transient capture error; all other failures propagate."""
+    from playwright.sync_api import Error
+    for attempt in range(1, 4):
+        try:
+            page.screenshot(path=str(destination), full_page=True, animations='disabled')
+            return attempt
+        except Error as error:
+            if 'Unable to capture screenshot' not in str(error) or attempt == 3:
+                raise
+            page.evaluate('''() => new Promise(resolve =>
+                requestAnimationFrame(() => requestAnimationFrame(resolve)))''')
+
+
 def browser_check(html_path, output, executable=None):
-    from playwright.sync_api import sync_playwright
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as error:
+        raise RuntimeError(
+            '缺少 Playwright；请在 daily-input 环境执行 python -m pip install -r requirements-qa.txt'
+        ) from error
+    fonts = verify_fonts()
+    environment = {
+        'fonts': fonts,
+        'playwright': version('playwright'),
+        'platform': platform.system(),
+        'architecture': platform.machine(),
+        'fontconfig': subprocess.check_output(['fc-match', '--version'], stderr=subprocess.STDOUT, text=True).strip(),
+    }
+    # Package versions make rendering changes diagnosable without recording home paths.
+    try:
+        environment['font_packages'] = subprocess.check_output(
+            ['dpkg-query', '-W', '-f=' + chr(36) + '{Package}=' + chr(36) + '{Version}\n',
+             'libfontconfig1', 'libfreetype6'], text=True, stderr=subprocess.DEVNULL).strip().splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        environment['font_packages'] = []
     result = {}
     with sync_playwright() as runtime:
         options = {'headless':True}
         if executable:
             options['executable_path'] = str(executable)
-        browser = runtime.chromium.launch(**options)
+        try:
+            browser = runtime.chromium.launch(**options)
+        except Exception as error:
+            raise RuntimeError(
+                'Chromium 启动失败。请确认已激活 daily-input 环境，执行 '
+                'python -m playwright install chromium；'
+                'Ubuntu 缺少共享库时，在本机终端执行 '
+                'python -m playwright install-deps chromium（需要 sudo 授权）。'
+                '若出现 Operation not permitted / socket 权限错误，须在允许启动浏览器的环境重跑；'
+                '不能通过跳过检查或更新基线解决。原始错误：' + str(error)
+            ) from error
         try:
             for name, (width,height) in VIEWPORTS.items():
                 context = browser.new_context(viewport={'width':width,'height':height}, offline=True,
@@ -157,7 +206,7 @@ def browser_check(html_path, output, executable=None):
                       paragraphs: [...document.querySelectorAll('article p')].map(p => ({font:getComputedStyle(p).fontSize,line:getComputedStyle(p).lineHeight})),
                       title: document.title, height: document.documentElement.scrollHeight
                     })''')
-                    page.screenshot(path=str(output/f'{name}.png'), full_page=True, animations='disabled')
+                    screenshot_attempts = capture_screenshot(page, output/f'{name}.png')
                     external = [url for url in requests if not url.startswith(('file:','data:','about:'))]
                     require(not errors, f'{name} 浏览器脚本错误：{errors}')
                     require(not external, f'{name} 请求外部资源：{external}')
@@ -167,7 +216,7 @@ def browser_check(html_path, output, executable=None):
                     # Only article paragraphs use the accepted 20px/31px body settings.
                     require(metrics['paragraphs'] and all(p['font']=='20px' and p['line']=='31px' for p in metrics['paragraphs']),
                             f'{name} 正文字号或行高不符合20px/31px定稿')
-                    result[name] = dict(metrics, viewport={'width':width,'height':height}, screenshot=f'{name}.png', external_requests=external)
+                    result[name] = dict(metrics, screenshot_attempts=screenshot_attempts, browser_version=browser.version, render_environment=dict(environment, chromium=browser.version), viewport={'width':width,'height':height}, screenshot=f'{name}.png', external_requests=external)
                 finally:
                     context.close()
         finally:
@@ -175,14 +224,35 @@ def browser_check(html_path, output, executable=None):
     return result
 
 
-def visual_check(output, baseline, update):
+def visual_check(output, baseline, update, environment=None, identity=None):
     if update:
         baseline.mkdir(parents=True, exist_ok=True)
         for name in VIEWPORTS:
             shutil.copyfile(output/f'{name}.png', baseline/f'{name}.png')
-        (baseline/'baseline.json').write_text(json.dumps({'viewports':VIEWPORTS,'engine':'chromium'},indent=2)+'\n')
+        metadata = {
+            'viewports': VIEWPORTS, 'engine': 'chromium', 'environment': environment,
+            'identity': identity,
+            'screenshot_sha256': {
+                name: hashlib.sha256((baseline/f'{name}.png').read_bytes()).hexdigest()
+                for name in VIEWPORTS
+            },
+        }
+        (baseline/'baseline.json').write_text(json.dumps(metadata,indent=2)+'\n')
         return {'mode':'created','baseline_dir':str(baseline)}
     require((baseline/'baseline.json').is_file(), '缺少视觉基线，请明确使用 --update-baseline 建立')
+    metadata = json.loads((baseline/'baseline.json').read_text())
+    if metadata.get('identity') is not None:
+        require(metadata['identity'] == identity,
+                '视觉基线不属于当前稿件或 HTML：每日不同内容、修订和样式更改需独立审阅；不能复用其他期次基线')
+    if metadata.get('screenshot_sha256') is not None:
+        for name in VIEWPORTS:
+            reference = baseline/f'{name}.png'
+            require(reference.is_file() and hashlib.sha256(reference.read_bytes()).hexdigest() ==
+                    metadata['screenshot_sha256'].get(name),
+                    f'视觉基线 {name}.png 与登记哈希不一致，须检查基线完整性')
+    if metadata.get('environment') is not None:
+        require(metadata['environment'] == environment,
+                '视觉环境与基线不同；请检查字体锁、Chromium、Playwright、fontconfig 和 FreeType 版本，不能自动更新基线')
     differences = {}
     for name in VIEWPORTS:
         reference = baseline/f'{name}.png'
@@ -203,10 +273,23 @@ def visual_check(output, baseline, update):
     return {'mode':'compared','baseline_dir':str(baseline),'viewports':differences}
 
 
-def run_qa(issue, html_path, output, baseline, *, update_baseline=False, max_bytes=12*1024*1024, browser_executable=None):
-    issue, html_path, output, baseline = (Path(p).resolve() for p in (issue,html_path,output,baseline))
+def run_qa(issue, html_path, output, baseline=None, *, update_baseline=False, max_bytes=12*1024*1024, browser_executable=None, visual_mode='compare'):
+    if visual_mode not in {'compare', 'rules'}:
+        raise ValueError('visual_mode 须为 compare 或 rules')
+    if visual_mode == 'rules' and (baseline is not None or update_baseline):
+        raise ValueError('规则模式不读取或更新基线，请省略 baseline 和 update_baseline')
+    if visual_mode == 'compare' and baseline is None:
+        raise ValueError('同一期比较模式须提供 baseline')
+    issue, html_path, output = (Path(p).resolve() for p in (issue, html_path, output))
+    baseline = Path(baseline).resolve() if baseline is not None else None
+    if visual_mode == 'rules' and (output / 'baseline.json').exists():
+        raise ValueError('规则截图输出目录含视觉基线；为保护基线，未写入任何文件')
+    # A screenshot output must never overwrite the references it is checking.
+    if baseline is not None and (output == baseline or output in baseline.parents or baseline in output.parents):
+        raise ValueError('QA 输出目录与视觉基线目录不得相同或相互包含；为保护基线，未写入任何报告或截图')
     output.mkdir(parents=True,exist_ok=True)
     report = {'status':'failed','issue':str(issue),'html':str(html_path),'checks':[], 'browser':{'viewports':{}}}
+    report.update(visual_mode=visual_mode, human_visual_review='not_performed')
 
     def check(name, action):
         try:
@@ -221,6 +304,12 @@ def run_qa(issue, html_path, output, baseline, *, update_baseline=False, max_byt
         verify_ready(issue)
         manifest = validate(read_json(issue/'manifest.json'))
         data = html_path.read_bytes()
+        identity = {
+            'date': manifest['date'], 'version': manifest['version'],
+            'manifest_sha256': hashlib.sha256((issue/'manifest.json').read_bytes()).hexdigest(),
+            'html_sha256': hashlib.sha256(data).hexdigest(),
+        }
+        report['baseline_identity'] = identity
         text = data.decode('utf-8')
         doc = Document(text)
         with tempfile.TemporaryDirectory(prefix='daily-qa-reference-') as temp:
@@ -238,13 +327,20 @@ def run_qa(issue, html_path, output, baseline, *, update_baseline=False, max_byt
             metrics = check('browser',lambda:browser_check(html_path,output,browser_executable))
             if metrics is not None:
                 report['browser']['viewports'] = metrics
-                check('visual',lambda:visual_check(output,baseline,update_baseline))
+                if visual_mode == 'compare':
+                    check('visual',lambda:visual_check(output,baseline,update_baseline, next(iter(metrics.values()), {}).get('render_environment'), identity))
+                else:
+                    report['checks'].append({'id': 'visual', 'status': 'not_applicable',
+                        'details': '每日规则检查：保留三视口截图；不与其他期次整页比较，未进行人工审美验收'})
             else:
                 report['checks'].append({'id':'visual','status':'not_run','details':'浏览器失败，未创建或修改视觉基线'})
         else:
             for name in ('browser','visual'):
                 report['checks'].append({'id':name,'status':'not_run','details':'静态检查未通过，未运行浏览器或修改基线'})
-        if len(report['checks'])==8 and all(item['status']=='passed' for item in report['checks']):
+        if len(report['checks']) == 8 and all(
+                item['status'] == 'passed' or
+                (visual_mode == 'rules' and item['id'] == 'visual' and item['status'] == 'not_applicable')
+                for item in report['checks']):
             report['status']='passed'
     except Exception as error:
         report['checks'].append({'id':'input','status':'failed','details':str(error)})
@@ -267,13 +363,19 @@ def main():
     cli.add_argument('issue',type=Path)
     cli.add_argument('--html',type=Path,required=True)
     cli.add_argument('--output-dir',type=Path,required=True)
-    cli.add_argument('--baseline-dir',type=Path,required=True)
+    cli.add_argument('--baseline-dir',type=Path)
+    cli.add_argument('--rules-only',action='store_true',help='每日规则检查并保存截图，不读取或更新视觉基线')
     cli.add_argument('--update-baseline',action='store_true',help='显式创建或更新视觉基线（其他检查须先通过）')
     cli.add_argument('--browser-executable',type=Path)
     cli.add_argument('--max-bytes',type=int,default=12*1024*1024)
     args=cli.parse_args()
+    if args.rules_only and (args.baseline_dir or args.update_baseline):
+        cli.error('--rules-only 不能同时提供基线或 --update-baseline')
+    if not args.rules_only and args.baseline_dir is None:
+        cli.error('同一期比较须提供 --baseline-dir，或使用 --rules-only')
     report=run_qa(args.issue,args.html,args.output_dir,args.baseline_dir,update_baseline=args.update_baseline,
-                  max_bytes=args.max_bytes,browser_executable=args.browser_executable)
+                  max_bytes=args.max_bytes,browser_executable=args.browser_executable,
+                  visual_mode='rules' if args.rules_only else 'compare')
     print(f'{report["status"]}: {args.output_dir / "report.json"}')
     raise SystemExit(0 if report['status']=='passed' else 1)
 

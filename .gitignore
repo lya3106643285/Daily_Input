@@ -9,3 +9,8 @@ __pycache__/
 /secrets/
 /var/
 /outputs/email/
+
+# Local production content and diagnostic experiments (keep on disk)
+/outputs/production/
+/outputs/handoff-experiment-*/
+/outputs/visual-environment-*/

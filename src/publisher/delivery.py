@@ -118,7 +118,7 @@ def verify(remote, expected, gmail_id=None):
         return False
 
 
-def deliver(key, sha, raw, database, gmail):
+def deliver(key, sha, raw, database, gmail, *, allow_resend=True):
     """Serialize local sends and persist intent before making an external request.
 
     Re-run after SEND_UNKNOWN to reconcile, then make at most one explained resend.
@@ -177,6 +177,9 @@ def deliver(key, sha, raw, database, gmail):
                 return {'status': 'SEND_ACCEPTED', 'skipped': True, 'detail': '已接受，待核验；不会补发'}
             if len(attempts) >= 2:
                 return {'status': attempts[-1]['status'], 'skipped': True, 'detail': '已达两次尝试上限'}
+            if attempts and not allow_resend:
+                return {'status': attempts[-1]['status'], 'skipped': True,
+                        'detail': 'Automatic resend disabled; reconcile or explicitly authorize a resend'}
             number = len(attempts) + 1
             if number == 2:
                 message = parse(raw)

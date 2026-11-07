@@ -1,5 +1,7 @@
 # Gmail 邮件投递
 
+> 当前完整流程以根目录 README 和 [Pipeline 运行说明](../Pipeline运行说明.md) 为准。本页保留该组件的接口与分阶段验证记录；以下命令须先激活 daily-input conda 环境。
+
 本模块发送已经出版的完整单文件 HTML，不重新生成正文。默认生成 EML 预览，只有显式提供 `--send` 才调用 Gmail。当前本地名单只配置用户自己的 Gmail；真实名单保存在被 Git 忽略的 `config/email.json`，公开样例见 `config/email.example.json`。
 
 ## 收件人配置
@@ -17,8 +19,8 @@ cp config/email.example.json config/email.json
 在 Google Cloud 项目启用 Gmail API，并为桌面应用创建 OAuth 客户端，下载到 `secrets/gmail-client.json`。使用自己的账号完成 Google 同意页面授权。不要将客户端文件、token 或名单提交仓库。
 
 ```bash
-.venv/bin/pip install -e '.[email-setup]'
-.venv/bin/python -m publisher.delivery --authorize secrets/gmail-client.json
+python -m pip install -e '.[email-setup]'
+python -m publisher.delivery --authorize secrets/gmail-client.json
 ```
 
 命令打印授权网址，浏览器打开后回调本机 8765 端口；WSL 环境需确保 Windows 浏览器能访问该端口。授权等待最多 300 秒。授权文件默认保存到 `secrets/gmail-token.json`，文件权限 0600，不覆盖已有文件。可通过 `--token PATH` 或环境变量 `GMAIL_TOKEN_FILE` 改路径。也可直接提供已有的 Google `authorized_user` JSON，须含 `client_id`、`client_secret`、`refresh_token`。
@@ -30,7 +32,7 @@ cp config/email.example.json config/email.json
 ## 预览与发送
 
 ```bash
-.venv/bin/python -m publisher.delivery \
+python -m publisher.delivery \
   'docs/3 出版引擎/阶段三成品/Daily_Input_2026-11-06.html' \
   --date 2026-11-06 --version 1
 ```
@@ -60,7 +62,7 @@ HTTP 层不自动重试发送。首次结果不明时，下次显式运行相同
 ## 验证
 
 ```bash
-.venv/bin/python -m unittest discover -s tests -p test_email_delivery.py -v
+python -m unittest discover -s tests -p test_email_delivery.py -v
 ```
 
 测试使用模拟 Gmail，覆盖收件名单、附件字节、并发去重、崩溃恢复、接受后核验失败、响应丢失后找回、补发说明与次数上限、附件变更和配置拒绝。真实 OAuth、真实 Gmail 及收件箱附件体验仍需授权后完成验收。

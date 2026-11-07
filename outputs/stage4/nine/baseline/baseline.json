@@ -13,5 +13,45 @@
       820
     ]
   },
-  "engine": "chromium"
+  "engine": "chromium",
+  "environment": {
+    "fonts": {
+      "lock_sha256": "fc5641a1198be82a2676cc2f64602b32572e254f9a0d0f677a6cedc26062a0f0",
+      "families": {
+        "Maple Mono NF CN": "7.900",
+        "DejaVu Sans": "2.37",
+        "DejaVu Sans Mono": "2.37"
+      },
+      "verified_files": 22
+    },
+    "playwright": "1.62.0",
+    "platform": "Linux",
+    "architecture": "x86_64",
+    "fontconfig": "fontconfig version 2.15.0",
+    "font_packages": [
+      "libfontconfig1=2.15.0-1.1ubuntu2",
+      "libfreetype6=2.13.2+dfsg-1ubuntu0.2"
+    ],
+    "chromium": "151.0.7922.34"
+  },
+  "approval": {
+    "date": "2026-11-07",
+    "user_instruction": "采用字体实验那一版",
+    "body_font_stack": [
+      "DejaVu Sans",
+      "Maple Mono NF CN",
+      "sans-serif"
+    ]
+  },
+  "identity": {
+    "date": "2026-11-06",
+    "version": "V3.2-stage3.1",
+    "manifest_sha256": "1892f416974659ee39c135c1e960d59981d4e73b28b4a5da2ce30366447be17e",
+    "html_sha256": "89647362fcbe786ac553aff8a4bc08e9865da2b81062d1bfe982fd8031e51928"
+  },
+  "screenshot_sha256": {
+    "narrow": "74b7b294da1a6ce1db3a7f982ed1fa6b687d75ba8eb47e7195d128100291746d",
+    "ipad-portrait": "dae4de61c7787febf25358964e34d5181f13c823d933db405c7c4a8b314ed01b",
+    "ipad-landscape": "b920ca8ed9ea03092714910d323f3a49e144a08152a96c651ea98175740aca29"
+  }
 }

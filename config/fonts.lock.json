@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "approved_body_stack": [
+    "DejaVu Sans",
+    "Maple Mono NF CN",
+    "sans-serif"
+  ],
+  "sources": {
+    "Maple Mono NF CN": "https://github.com/subframe7536/maple-font/releases/tag/v7.9",
+    "DejaVu Sans": "https://dejavu-fonts.github.io/"
+  },
+  "files": [
+    {
+      "filename": "MapleMono-NF-CN-Bold.ttf",
+      "family": "Maple Mono NF CN",
+      "style": "Bold",
+      "version": "Version 7.900",
+      "sha256": "9e0c22a032c255b2da2c073d6cca6f8cf6fd6f214ae5407eb9f1aa523713729b",
+      "bytes": 20604560,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-BoldItalic.ttf",
+      "family": "Maple Mono NF CN",
+      "style": "Bold Italic",
+      "version": "Version 7.900",
+      "sha256": "9d6e76fbb5767406efd1f5ae2d32f5439de3b4d4063b128e4186ad5619267120",
+      "bytes": 21336272,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-ExtraBold.ttf",
+      "family": "Maple Mono NF CN ExtraBold",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "14231bdd7e4a7fb8a8a95d7b5886adb2e210370c53228752c49f43440f53ae29",
+      "bytes": 20343940,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-ExtraBoldItalic.ttf",
+      "family": "Maple Mono NF CN ExtraBold",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "d10590f9a7b57e74608b92b52c2c2094111c3baa3b6545627035f33adb6c8b23",
+      "bytes": 21075368,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-ExtraLight.ttf",
+      "family": "Maple Mono NF CN ExtraLight",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "aa4474cad4a3cd19585b8d323d3effb1ec0321f7df64699e674868c7e57f1820",
+      "bytes": 20646912,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-ExtraLightItalic.ttf",
+      "family": "Maple Mono NF CN ExtraLight",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "0ba376b3977fb9c5737dd98f2171b3a05b14d5d92b33062ea1582922c415eba6",
+      "bytes": 21330100,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-Italic.ttf",
+      "family": "Maple Mono NF CN",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "39e6c6e611e65e6d0780f6279561f954f9db51221987d0924c45f6121eaf9054",
+      "bytes": 21377684,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-Light.ttf",
+      "family": "Maple Mono NF CN Light",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "1e82e3bcc0a70a97a95bdad7d56b8eb31888837e5db3c8c425464430c7f0db23",
+      "bytes": 20653376,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-LightItalic.ttf",
+      "family": "Maple Mono NF CN Light",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "ac6e062b789f37fc95c6392ed4261b253f6f8a790f5c2eb1082888a287e4a5a5",
+      "bytes": 21363464,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-Medium.ttf",
+      "family": "Maple Mono NF CN Medium",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "6ffdd917c83f397ea021c96f23a54f23f5da835d75f8ddf77f8252ccb35d914f",
+      "bytes": 20640072,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-MediumItalic.ttf",
+      "family": "Maple Mono NF CN Medium",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "d18b1a8295f9ef858131d8f0bcc4b82d9c8b016a7d6588920074d62bd08a0d0d",
+      "bytes": 21374220,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-Regular.ttf",
+      "family": "Maple Mono NF CN",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "bb8e8e8c263896f42555107202f1847f7a42c340a3e532df9c4d585c9794411c",
+      "bytes": 20649812,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-SemiBold.ttf",
+      "family": "Maple Mono NF CN SemiBold",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "62a707a1c155e971055ce22bbdfacfa5bab50cd09d27bcb27e3ecbf1ac154aab",
+      "bytes": 20628332,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-SemiBoldItalic.ttf",
+      "family": "Maple Mono NF CN SemiBold",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "84d3462a6c42b6eb60993d35eecd05203a8f4006d7710ce40e7d5321d1fcc5ab",
+      "bytes": 21363276,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-Thin.ttf",
+      "family": "Maple Mono NF CN Thin",
+      "style": "Regular",
+      "version": "Version 7.900",
+      "sha256": "2c65cc93dab98d6e4edfb42691b12c1b93af65a4084a1ad154defbb34813e1d8",
+      "bytes": 20631388,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "MapleMono-NF-CN-ThinItalic.ttf",
+      "family": "Maple Mono NF CN Thin",
+      "style": "Italic",
+      "version": "Version 7.900",
+      "sha256": "b7a6eab925124502f0a5b77d305fc23bab1377f0119392ec7c9da62ee238a6e7",
+      "bytes": 21283612,
+      "license": "MapleMono-OFL-1.1.txt"
+    },
+    {
+      "filename": "DejaVuSans-Bold.ttf",
+      "family": "DejaVu Sans",
+      "style": "Bold",
+      "version": "Version 2.37",
+      "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
+      "bytes": 708920,
+      "license": "DejaVu-copyright.txt"
+    },
+    {
+      "filename": "DejaVuSans.ttf",
+      "family": "DejaVu Sans",
+      "style": "Book",
+      "version": "Version 2.37",
+      "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+      "bytes": 759720,
+      "license": "DejaVu-copyright.txt"
+    },
+    {
+      "filename": "DejaVuSansMono-Bold.ttf",
+      "family": "DejaVu Sans Mono",
+      "style": "Bold",
+      "version": "Version 2.37",
+      "sha256": "3a3c502eeff669a231549e80df9f7c49de109bafe303170409e905d0b31a38fe",
+      "bytes": 334268,
+      "license": "DejaVu-copyright.txt"
+    },
+    {
+      "filename": "DejaVuSansMono-BoldOblique.ttf",
+      "family": "DejaVu Sans Mono",
+      "style": "Bold Oblique",
+      "version": "Version 2.37",
+      "sha256": "a5251173370e30760e6919711dcd33e149d216ca4814eb74332bda03fcc7e834",
+      "bytes": 254960,
+      "license": "DejaVu-copyright.txt"
+    },
+    {
+      "filename": "DejaVuSansMono-Oblique.ttf",
+      "family": "DejaVu Sans Mono",
+      "style": "Oblique",
+      "version": "Version 2.37",
+      "sha256": "3d7955616e69721f7edb8e1b7a580f8fbd7d737111c6b54266ddc1d9ef13202f",
+      "bytes": 253448,
+      "license": "DejaVu-copyright.txt"
+    },
+    {
+      "filename": "DejaVuSansMono.ttf",
+      "family": "DejaVu Sans Mono",
+      "style": "Book",
+      "version": "Version 2.37",
+      "sha256": "c805f9436dbc268644c1d9584f01a601a653e028e08fd74b9b949f6cf8304d88",
+      "bytes": 343140,
+      "license": "DejaVu-copyright.txt"
+    }
+  ],
+  "versions": {
+    "Maple Mono NF CN": "7.900",
+    "DejaVu Sans": "2.37",
+    "DejaVu Sans Mono": "2.37"
+  }
+}

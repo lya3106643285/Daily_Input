@@ -1,0 +1,9 @@
+name: daily-input
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - -r requirements-qa.txt
+      - -e .[email-setup]

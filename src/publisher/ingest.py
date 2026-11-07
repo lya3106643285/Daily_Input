@@ -205,8 +205,20 @@ def ingest(author, metadata_path, store, *, fault=None):
     day = date.fromisoformat(metadata['date']).isoformat()
     if day != metadata['date'] or not isinstance(metadata.get('version'), str) or not metadata['version'].strip():
         raise ValueError('date 须为 ISO 日期；version 须为非空字符串')
-    raw_bytes = author.read_bytes()
-    text = raw_bytes.decode('utf-8-sig')
+    submitted_bytes = author.read_bytes()
+    raw_bytes = submitted_bytes
+    original_metadata = None
+    localization = metadata.get('image_localization')
+    if localization is not None:
+        if not isinstance(localization, dict) or localization.get('schema_version') != 1:
+            raise ValueError('未知图片本地化记录格式')
+        raw_bytes = (author.parent / 'author-original.md').read_bytes()
+        original_metadata = (author.parent / 'metadata-original.json').read_bytes()
+        if (digest(raw_bytes) != localization.get('original_sha256')
+                or digest(submitted_bytes) != localization.get('prepared_sha256')
+                or digest(original_metadata) != localization.get('metadata_original_sha256')):
+            raise ValueError('图片交稿包原稿或工作副本校验失败')
+    text = submitted_bytes.decode('utf-8-sig')
     if re.search(r'【[^】]*】|待补', text) or re.search(r'【[^】]*】|待补', json.dumps(metadata, ensure_ascii=False)):
         raise ValueError(f'期次 {day}：存在占位文字或待补来源')
     items, refs = scan(text)
@@ -218,6 +230,20 @@ def ingest(author, metadata_path, store, *, fault=None):
             paths[ref] = path.read_bytes()
         except (OSError, ValueError) as exc:
             raise ValueError(f'期次 {day} 第 {line} 行 图片 {ref}：{exc}') from exc
+    download_records = {}
+    if localization is not None:
+        from .images import rights_record
+        records = localization.get('records')
+        if not isinstance(records, dict):
+            raise ValueError('缺少图片下载记录')
+        for url, record in records.items():
+            rights_record(record)
+            ref = record.get('path')
+            if (record.get('url') != url or ref not in paths
+                    or digest(paths[ref]) != record.get('sha256')):
+                raise ValueError('图片下载记录与本地文件不一致')
+            entry = download_records.setdefault(ref, {'sha256': digest(paths[ref]), 'sources': [], 'downloads': []})
+            entry['downloads'].append(record)
     fingerprint = digest(json_bytes({'author':digest(raw_bytes), 'metadata':metadata,
                                     'assets':{k:digest(v) for k,v in paths.items()}}))
     store.mkdir(parents=True, exist_ok=True)
@@ -252,7 +278,7 @@ def ingest(author, metadata_path, store, *, fault=None):
                     'legacy_ids':sorted(legacy), 'assets':list(paths), 'input_sha256':fingerprint,
                     'history':history, 'links':metadata.get('links', {}),
                     'excerpts':{}, 'excerpt_history':dict(previous.get('excerpt_history', {})),
-                    'asset_records':{}}
+                    'asset_records':download_records}
         # Record a material's explicit local-source keys in encounter order; suffixes never recycle.
         from markdown_it.tree import SyntaxTreeNode
         by_line = {i['line']:i for i in items}
@@ -330,6 +356,9 @@ def ingest(author, metadata_path, store, *, fault=None):
         link = store / f'.{day}-{uuid.uuid4().hex}.link'
         try:
             write(stage / 'original.md', raw_bytes)
+            if localization is not None:
+                write(stage / 'author-localized.md', submitted_bytes)
+                write(stage / 'metadata-original.json', original_metadata)
             write(stage / 'issue.json', metadata_path.read_bytes())
             write(stage / f'Daily_Input_{day}.md', work.encode())
             for ref, data in paths.items():

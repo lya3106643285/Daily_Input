@@ -9,6 +9,6 @@ HTML：/home/lya3106643285/projects/daily-input/outputs/stage4/long/html/Daily_I
 | media | passed | 2 张内嵌图片可解码；材料组件数量对应原稿 |
 | links | passed | 17 个链接格式有效；未联网验证活性 |
 | html | passed | HTML文档完整，元素正确闭合 |
-| package | passed | 428729 字节；CSS 与图片独立内嵌 |
+| package | passed | 428710 字节；CSS 与图片独立内嵌 |
 | browser | passed | [narrow](narrow.png) 390×844，无溢出、图片可解码、内链有效；[ipad-portrait](ipad-portrait.png) 820×1180，无溢出、图片可解码、内链有效；[ipad-landscape](ipad-landscape.png) 1180×820，无溢出、图片可解码、内链有效 |
 | visual | passed | 三视口视觉基线比较通过 |
