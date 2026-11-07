@@ -1,0 +1,7 @@
+{
+  "sender": "you@gmail.com",
+  "to": ["you@gmail.com"],
+  "cc": [],
+  "bcc": [],
+  "subject_prefix": "每日信息输入"
+}

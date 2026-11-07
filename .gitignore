@@ -5,3 +5,7 @@ __pycache__/
 /build/
 .locks/
 *.egg-info/
+/config/email.json
+/secrets/
+/var/
+/outputs/email/
